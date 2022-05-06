@@ -37,26 +37,44 @@
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light shadow" id="mainNav">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{% url 'Inicio' %}">Inicio</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                     aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item text-black">
-                            <a class="nav-link text-black font-weight-bold" href="#">About</a>
-                        </li>
-                        <li class="nav-item text-black">
-                            <a class="nav-link text-black font-weight-bold" href="#">Registrase</a>
-                        </li>
-                        <li class="nav-item text-black">
-                            <a class="nav-link text-black font-weight-bold" href="{% url 'Inicio' %}"">Acceder</a>
-                        </li>
-                    </ul>
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav">
+                      <a href="{% url 'Inicio' %}"
+                        class="nav-item nav-link  {% if request.path == '/' %}active{% endif %}">Inicio</a>
+                    </div>
+          
+                    {% if request.user.is_authenticated %}
+                    <div class="navbar-nav ml-auto">
+                        <a href="#" class="nav-item nav-link">Perfil</a>
+                        <a href="{% url 'accounts:logout' %}" class="nav-item nav-link">Salir</a>
+                    </div>
+                    {% else %}
+                    <div class="navbar-nav ml-auto">
+                        <a href="{% url 'accounts:login' %}"
+                            class="nav-item nav-link {% if request.path == '/accounts/login/' %}active{% endif %}">Acceder</a>
+                        <a href="{% url 'accounts:signup' %}"
+                            class="nav-item nav-link {% if request.path == '/accounts/signup/' %}active{% endif %}">Registrarse</a>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
         </nav>
+        <body>
+            <nav class="navbar navbar-expand-sm navbar-light bg-light">
+             <!-- ... -->
+            </nav>
+        
+        <!-- Adding the message in the template -->
+        {% for message in messages %}
+        <div class="alert alert-success alert-dismissible fade show">
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+        </div>
+        {% endfor %}
         {% block content %}
         <!-- Content Goes here -->
         {% endblock content %}
