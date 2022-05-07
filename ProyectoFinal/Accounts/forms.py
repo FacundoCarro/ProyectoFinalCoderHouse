@@ -10,3 +10,8 @@ class SignUpForm(UserCreationForm):
 class LoginForm(forms.Form):
     email = forms.CharField()
     password = forms.CharField()
+    
+class EditProfileForm(forms.Form):
+    username = forms.CharField()
+    about_me = forms.CharField(widget=forms.Textarea())
+    image = forms.ImageField(required=False)
