@@ -11,3 +11,7 @@ class InicioView(ListView):
 class PostView(DetailView):
     model = Post
     template_name = 'blog/post.html'
+    
+def about(request):
+    
+    return render(request, "blog/about.html")

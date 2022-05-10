@@ -53,7 +53,7 @@
             <span>Autor: {{ post.autor }}</span>
           </div>
         </div>
-        <p class="card-text">{{ post.contenido|truncatewords:20 }}</p>
+        <p class="card-text">{{ post.contenido|truncatewords:20|safe }}</p>
         <a class='btn btn-primary' href="{% url 'Post' post.id post.url %}">Leer Mas</a>
       </div>
     </div>
@@ -83,7 +83,7 @@
 
         {% if page_obj.has_next %}
         <li class="page-item">
-          <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+          <a class="page-link" href="?page={{ page_obj.next_page_number }}">Siguiente</a>
         </li>
         {% else %}
         <li class="page-item disabled">

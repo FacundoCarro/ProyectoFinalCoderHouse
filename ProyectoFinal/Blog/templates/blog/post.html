@@ -3,6 +3,37 @@
 {% block head_title %}{{ post.titulo }}{% endblock %}
 
 {% block content %}
+<!-- Header -->
+<style>
+  body {
+      font-family: "Roboto", sans-serif;
+      font-size: 18px;
+      background-color: #fdfdfd;
+  }
+
+  .head_text {
+      color: white;
+  }
+
+  .card {
+      box-shadow: 0 16px 48px #E3E7EB;
+  }
+</style>
+
+<header class="masthead">
+  <div class="overlay"></div>
+  <div class="container">
+      <div class="row">
+          <div class=" col-md-8 col-md-10 mx-auto">
+              <div class="site-heading">
+                  <h3 class=" site-heading my-4 mt-3 text-white"> Al mundo con una Valija </h3>
+                  <p class="text-light">Un Blog de Viajes y Mas..! &nbsp
+                  </p>
+              </div>
+          </div>
+      </div>
+  </div>
+</header>
 <div class="container-fluid my-3">
   <div class="row">
     <div class="col-lg-8 offset-lg-2">
@@ -22,9 +53,9 @@
         </div>
         {% if post.imagen %}
         <img class="card-img-top" src="{{ post.imagen.url }}" alt="{{ post.titulo }}">
-        {% endif %}n
-        <div class="card-text mt-5 p-4">
-          {{ post.contenido}}
+        {% endif %}
+        <div class="card-text mt-5 p-2">
+          {{ post.contenido|safe}}
         </div>
       </div>
 
